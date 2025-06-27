@@ -1,0 +1,16 @@
+# Render configuration
+services:
+  - type: worker
+    name: ip-checker
+    runtime: docker
+    repo: https://github.com/sangamsharma/ip-checker  # Replace with your repository
+    plan: starter
+    envVars:
+      - key: DATABASE_URL  # Optional, keep if needed for other services
+        value: postgresql://postgres:[YOUR-PASSWORD]@aws-0-us-west-1.pooler.supabase.com:6543/postgres
+        sync: false
+    region: singapore
+    dockerContext: .
+    dockerfilePath: ./Dockerfile
+    autoDeployTrigger: commit
+    version: "1"
